@@ -4,16 +4,18 @@ import cn.xrb.clouduser.entity.User;
 import cn.xrb.clouduser.exception.UserException;
 import cn.xrb.clouduser.mapper.UserMapper;
 import cn.xrb.clouduser.service.UserService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author xrb
@@ -25,6 +27,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private UserMapper userMapper;
 
+    @Transactional(rollbackFor = UserException.class)
     @Override
     public boolean registerUser(User user) {
         try {
@@ -32,12 +35,38 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             user.setUpdatedAt(updatedAt);
             int rows = userMapper.insert(user);
             if (rows > 0) {
-                return  true;
+                return true;
             } else {
                 return false;
             }
-        } catch (Exception e) {
-            throw new UserException(500,"数据库记录重复");
+        }
+        catch (Exception e) {
+            throw new UserException(500,e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean loginUser(User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", user.getUsername());
+        queryWrapper.eq("password", user.getPassword());
+        User selectOne = userMapper.selectOne(queryWrapper);
+        if (selectOne != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean forgetUserName(User user) {
+        String email = user.getEmail();
+        User findUserByEmail = userMapper.findUserByEmail(email);
+        if (findUserByEmail!=null) {
+
+            return true;
+        } else {
+            return false;
         }
     }
 }

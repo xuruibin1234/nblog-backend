@@ -1,7 +1,9 @@
 package cn.xrb.clouduser.mapper;
 
-import cn.xrb.clouduser.entity.User;
+import cn.xrb.clouduser.entity.Email;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +13,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author xrb
  * @since 2024-05-14
  */
-public interface UserMapper extends BaseMapper<User> {
-    User findUserByEmail(String email);
+public interface EmailMapper extends BaseMapper<Email> {
+    Email findEmailById(Integer id);
 }

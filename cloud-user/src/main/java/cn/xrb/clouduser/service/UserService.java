@@ -14,4 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 public interface UserService extends IService<User> {
     boolean registerUser(@RequestBody User user);
+    boolean loginUser(@RequestBody User user);
+
+    boolean forgetUserName(@RequestBody User user);
+
+
 }

@@ -1,5 +1,6 @@
 package cn.xrb.clouduser.handler;
 
+import cn.xrb.clouduser.exception.EmailException;
 import cn.xrb.clouduser.exception.UserException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,5 +14,4 @@ public class GlobalExceptionHandler {
     public String handleCustomException(UserException e) {
         return "错误码：" + e.getCode() + "，错误信息：" + e.getMessage();
     }
-
 }

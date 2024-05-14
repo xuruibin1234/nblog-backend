@@ -36,5 +36,17 @@ public class UserController {
         }
         return  result;
     }
+
+    @PostMapping(value = "loginUser")
+    String loginUser(@RequestBody User user) {
+        String result = new String();
+        boolean loginUser = userService.loginUser(user);
+        if (loginUser) {
+            result = "登录成功";
+        } else {
+            result = "登录失败";
+        }
+        return  result;
+    }
 }
 
