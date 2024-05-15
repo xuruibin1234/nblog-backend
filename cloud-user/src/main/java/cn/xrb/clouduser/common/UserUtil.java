@@ -1,11 +1,10 @@
-package cn.xrb.clouduser.util;
+package cn.xrb.clouduser.common;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
-import java.util.Base64;
 
 @Component
 public  class UserUtil { private static final int ITERATIONS = 5000;

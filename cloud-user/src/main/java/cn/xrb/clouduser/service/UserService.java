@@ -1,8 +1,14 @@
 package cn.xrb.clouduser.service;
 
+import cn.xrb.clouduser.entity.Email;
+import cn.xrb.clouduser.entity.Response.BaseActionResponse;
 import cn.xrb.clouduser.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * <p>
@@ -10,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
  * </p>
  *
  * @author xrb
- * @since 2024-05-14
+ * @since 2024-05-15
  */
 public interface UserService extends IService<User> {
-    boolean registerUser(@RequestBody User user);
-    boolean loginUser(@RequestBody User user);
-
-    boolean forgetUserName(@RequestBody User user);
-
+    BaseActionResponse<User> login(User user);
+    BaseActionResponse<User> register(User user);
+    BaseActionResponse<User> findUsernameByEmail(User user);
+    BaseActionResponse<User> findPasswordByEmail(User user);
+    ResponseEntity<BufferedImage> generateCaptcha(HttpServletResponse response) throws IOException;
+    ResponseEntity<String> captchaSixNumber() throws IOException;
 
 }

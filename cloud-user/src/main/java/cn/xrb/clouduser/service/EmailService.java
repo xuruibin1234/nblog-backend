@@ -1,11 +1,9 @@
 package cn.xrb.clouduser.service;
 
 import cn.xrb.clouduser.entity.Email;
+import cn.xrb.clouduser.entity.Response.BaseActionResponse;
 import cn.xrb.clouduser.entity.dto.SendEmailDto;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 
 /**
  * <p>
@@ -13,9 +11,12 @@ import javax.mail.internet.AddressException;
  * </p>
  *
  * @author xrb
- * @since 2024-05-14
+ * @since 2024-05-15
  */
 public interface EmailService extends IService<Email> {
-    boolean addEmail(Email email);
-    boolean sendEmail(SendEmailDto sendEmailDto);
+    BaseActionResponse<Email> addEmail(Email email);
+    BaseActionResponse<Email> selectEmailById(Email email);
+    void sendEmail(SendEmailDto sendEmailDto);
+
+
 }

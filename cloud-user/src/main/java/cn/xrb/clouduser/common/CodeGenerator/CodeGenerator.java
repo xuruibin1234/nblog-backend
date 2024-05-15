@@ -1,19 +1,12 @@
-package cn.xrb.clouduser.CodeGenerator;
+package cn.xrb.clouduser.common.CodeGenerator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class CodeGenerator {
@@ -36,7 +29,7 @@ public class CodeGenerator {
         gc.setServiceName(capitalizedStr+"Service");
         gc.setServiceImplName(capitalizedStr+"ServiceImpl");
         gc.setMapperName(capitalizedStr+"Mapper");
-        gc.setXmlName(capitalizedStr+"MapperXml");
+        gc.setXmlName(capitalizedStr+"Mapper");
         gc.setIdType(IdType.AUTO);
         gc.setDateType(DateType.ONLY_DATE);
         gc.setSwagger2(true);
@@ -59,7 +52,7 @@ public class CodeGenerator {
         pc.setEntity("entity");
         pc.setService("service");
         pc.setMapper("mapper");
-        pc.setXml("xml");
+        pc.setXml("mapper");
         mpg.setPackageInfo(pc);
 
         // 配置模板

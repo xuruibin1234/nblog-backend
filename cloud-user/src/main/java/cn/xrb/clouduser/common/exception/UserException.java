@@ -1,4 +1,4 @@
-package cn.xrb.clouduser.exception;
+package cn.xrb.clouduser.common.exception;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package cn.xrb.clouduser.FreeMarker;
+package cn.xrb.clouduser.common.FreeMarker;
 
 import freemarker.template.*;
 
