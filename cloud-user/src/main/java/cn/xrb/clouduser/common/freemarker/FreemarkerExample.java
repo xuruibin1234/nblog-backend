@@ -1,12 +1,9 @@
-package cn.xrb.clouduser.common.FreeMarker;
+package cn.xrb.clouduser.common.freemarker;
 
 import freemarker.template.*;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 

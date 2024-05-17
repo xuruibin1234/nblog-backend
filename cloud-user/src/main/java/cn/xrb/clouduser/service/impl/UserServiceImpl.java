@@ -1,10 +1,9 @@
 package cn.xrb.clouduser.service.impl;
 
 import cn.xrb.clouduser.common.exception.UserException;
-import cn.xrb.clouduser.entity.Email;
-import cn.xrb.clouduser.entity.Response.BaseActionResponse;
-import cn.xrb.clouduser.entity.Response.FailActionResponse;
-import cn.xrb.clouduser.entity.Response.SuccessActionResponse;
+import cn.xrb.clouduser.common.response.BaseActionResponse;
+import cn.xrb.clouduser.common.response.FailActionResponse;
+import cn.xrb.clouduser.common.response.SuccessActionResponse;
 import cn.xrb.clouduser.entity.User;
 import cn.xrb.clouduser.mapper.UserMapper;
 import cn.xrb.clouduser.service.UserService;
@@ -23,7 +22,7 @@ import java.util.Random;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author xrb
@@ -43,14 +42,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public BaseActionResponse<User> login(User user) {
-        User logined = userMapper.login(user);
-        if (logined!=null) {
-            successActionResponse.setData(logined);
-            return successActionResponse;
-        } else {
-            return failActionResponse;
+        try {
+            User loginUser = userMapper.login(user);
+            if (loginUser != null) {
+                successActionResponse.setMessage("登录成功");
+                return successActionResponse;
+            } else {
+                failActionResponse.setMessage("登录失败,账号或密码错误");
+                return failActionResponse;
+            }
+        } catch (Exception e) {
+            throw new UserException(200,e.getMessage());
         }
     }
+
 
     @Override
     public BaseActionResponse<User> register(User user) {
@@ -66,13 +71,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public BaseActionResponse<User> findUsernameByEmail(User user) {
 
-        String username= userMapper.findUsernameByEmai(user);
-        if (username!=null && !username.equals("") ) {
+        String username = userMapper.findUsernameByEmai(user);
+        if (username != null && !username.equals("")) {
             user.setUsername(username);
             successActionResponse.setData(user);
             return successActionResponse;
-        }
-        else {
+        } else {
             return failActionResponse;
         }
     }
@@ -80,19 +84,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public BaseActionResponse<User> findPasswordByEmail(User user) {
 
-        String username= userMapper.findUsernameByEmai(user);
-        if (!username.equals("") && username!=null) {
+        String username = userMapper.findUsernameByEmai(user);
+        if (!username.equals("") && username != null) {
             user.setUsername(username);
             successActionResponse.setData(user);
             return successActionResponse;
-        }
-        else {
+        } else {
             return failActionResponse;
         }
     }
 
     @Override
-    public ResponseEntity<BufferedImage> generateCaptcha(HttpServletResponse response){
+    public ResponseEntity<BufferedImage> generateCaptcha(HttpServletResponse response) {
         try {
             int width = 160;
             int height = 40;
@@ -116,7 +119,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             ImageIO.write(bufferedImage, "png", response.getOutputStream());
             return new ResponseEntity<>(bufferedImage, HttpStatus.OK);
         } catch (IOException e) {
-            throw new UserException(500,e.getMessage());
+            throw new UserException(500, e.getMessage());
         }
     }
 
@@ -128,6 +131,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             int number = random.nextInt(10);
             captcha += number;
         }
-        return new ResponseEntity<>(captcha,HttpStatus.OK);
+        return new ResponseEntity<>(captcha, HttpStatus.OK);
     }
 }

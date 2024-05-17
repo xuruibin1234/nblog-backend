@@ -1,0 +1,20 @@
+@startuml
+'left to right direction
+skinparam actorStyle awesome
+actor User as user
+
+left to right direction
+rectangle  "UserManage" {
+  user -> (register)
+  (register) -> (Login)
+  user --> (Login)
+  (Login)  <<(UserLogin)>>
+  (Login)--> (getUserInfo)
+  (Login) - (UserLogin)
+}
+ rectangle "UserLogin" {
+    usecase "findUsernameByEmai" as UC1
+    usecase "findPasswordByEmai" as UC2
+ }
+
+@enduml

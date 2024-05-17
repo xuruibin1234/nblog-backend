@@ -1,4 +1,4 @@
-package cn.xrb.clouduser.common.CodeGenerator;
+package cn.xrb.clouduser.common.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -52,7 +52,7 @@ public class CodeGenerator {
         pc.setEntity("entity");
         pc.setService("service");
         pc.setMapper("mapper");
-        pc.setXml("mapper");
+        pc.setXml("mapper/xml");
         mpg.setPackageInfo(pc);
 
         // 配置模板

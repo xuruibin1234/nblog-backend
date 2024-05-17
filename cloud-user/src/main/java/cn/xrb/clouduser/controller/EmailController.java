@@ -2,7 +2,7 @@ package cn.xrb.clouduser.controller;
 
 
 import cn.xrb.clouduser.entity.Email;
-import cn.xrb.clouduser.entity.Response.BaseActionResponse;
+import cn.xrb.clouduser.common.response.BaseActionResponse;
 import cn.xrb.clouduser.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

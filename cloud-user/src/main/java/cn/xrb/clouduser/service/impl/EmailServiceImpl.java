@@ -1,15 +1,14 @@
 package cn.xrb.clouduser.service.impl;
 
 import cn.xrb.clouduser.entity.Email;
-import cn.xrb.clouduser.entity.Response.BaseActionResponse;
-import cn.xrb.clouduser.entity.Response.FailActionResponse;
-import cn.xrb.clouduser.entity.Response.SuccessActionResponse;
+import cn.xrb.clouduser.common.response.BaseActionResponse;
+import cn.xrb.clouduser.common.response.FailActionResponse;
+import cn.xrb.clouduser.common.response.SuccessActionResponse;
 import cn.xrb.clouduser.entity.dto.SendEmailDto;
 import cn.xrb.clouduser.mapper.EmailMapper;
 import cn.xrb.clouduser.service.EmailService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;

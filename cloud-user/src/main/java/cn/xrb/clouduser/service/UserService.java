@@ -1,7 +1,6 @@
 package cn.xrb.clouduser.service;
 
-import cn.xrb.clouduser.entity.Email;
-import cn.xrb.clouduser.entity.Response.BaseActionResponse;
+import cn.xrb.clouduser.common.response.BaseActionResponse;
 import cn.xrb.clouduser.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.http.ResponseEntity;
