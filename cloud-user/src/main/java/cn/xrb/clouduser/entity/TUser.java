@@ -1,6 +1,9 @@
 package cn.xrb.clouduser.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
@@ -16,13 +19,14 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author xrb
- * @since 2024-05-15
+ * @since 2024-05-22
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="User对象", description="")
-public class User implements Serializable {
+@TableName("t_user")
+@ApiModel(value="TUser对象", description="")
+public  class TUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,9 +41,11 @@ public class User implements Serializable {
 
     private String phone;
 
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
+
+    private Integer userRoleId;
 
 
 }

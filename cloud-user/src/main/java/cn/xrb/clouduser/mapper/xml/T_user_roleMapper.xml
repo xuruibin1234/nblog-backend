@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xrb.clouduser.mapper.T_user_roleMapper">
+
+    <insert id="addRole">
+        insert into t_user_role (id,name) values (#{userRole.id},#{userRole.name});
+    </insert>
+    <update id="updateRoleById">
+        UPDATE t_user_role set name = #{userRole.name} where id = #{userRole.id};
+    </update>
+    <delete id="delRoleById">
+        delete from t_user_role where id = #{userRole.id};
+    </delete>
+    <select id="findRoleById" resultType="cn.xrb.clouduser.entity.TUserRole">
+        select * from t_user_role where id = #{userRole.id};
+    </select>
+    <select id="findRoleLastId" resultType="java.lang.Integer">
+        select id from t_user_role order by id desc limit 1;
+    </select>
+
+</mapper>
